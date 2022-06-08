@@ -77,16 +77,20 @@ export const NavbarLink = styled(Link)`
 
 export const NavbarLinkExtended = styled(Link)`
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
-
+width:100%;
   color: white;
   font-size: x-large;
   font-family: 'Quicksand', sans-serif;
   text-decoration: none;
-  margin: 10px;
+  //margin: 10px;
+  padding:10px;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  text-align:start;
 `;
 
 export const Logo = styled.img`
-  margin: 10px;
+ // margin: 10px;
+ padding:10px;
   max-width: 180px;
   height: auto;
 `;
@@ -108,7 +112,7 @@ export const NavbarExtendedContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  margin: 0px 30px 0px 30px;
   @media (min-width: 780px) {
     display: none;
   }
@@ -120,12 +124,8 @@ export const NombreUsuario = styled.div`
   color: white;
   align-items: center;
   justify-content: flex-end;
+  margin-right:10px;
 
-&>span{
-
-  font-size: 18px;
-  margin-right:15px;
-}
 
 @media (max-width: 780px) {
     display: none;

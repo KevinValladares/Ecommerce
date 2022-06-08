@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
-import  Menu from './Components/Menu'
+import  NavMenu from './Components/NavMenu'
 import './Styles/Global.css'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
 
       <Router>
-        <Menu />
+        <NavMenu />
 
         <Routes>
           <Route>

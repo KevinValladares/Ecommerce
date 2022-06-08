@@ -1,18 +1,16 @@
-import React,{createContext,useState} from 'react'
+import React,{createContext,useReducer} from 'react'
+import authReducer, { initialState } from '../Reducers/AuthReducer'
 
 export const authContext = createContext()
 
 export default function AuthProvider({children}) {
 
-    const [user,setUser] = useState({
-        logged:false,
-        user:{}
-    })
+    const [state,dispatch] = useReducer(authReducer,initialState)
 
     return <authContext.Provider value={{
-        user:user.user,
-        logged:user.logged,
-        setUser
+        user:state.user,
+        logged:state.logged,
+        setUser:dispatch
     }}>
         {children}
     </authContext.Provider>

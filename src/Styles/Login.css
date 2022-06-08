@@ -39,6 +39,11 @@
     margin-bottom: 12px;
 }
 
+.inputlogin:hover{
+
+    border: 1px solid var(--button-login-color);;
+}
+
 
 .buttonlogin{
 
@@ -54,13 +59,17 @@
 
 }
 
+.buttonlogin:hover{
+    background-color: #001e73;
+}
+
 .lineadivisoria{
 
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 20px;
+    margin: 0px 20px;
 }
 
 .lineadivisoria .textolinea{
@@ -68,8 +77,8 @@
     padding: 4px 20px;
     margin: 5px 0;
     z-index: 1;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: var(--md);
+    font-weight: bold;
 }
 
 .lineadivisoria .line{
@@ -102,6 +111,12 @@
  
 }
 
+.buttonfacebook:hover,.buttongoogle:hover{
+
+    background-color: #001e73;
+    color: var(--white);
+}
+
 .containertosignup{
     margin: 20px 20px;
     display: flex;
@@ -109,4 +124,12 @@
 
 .containertosignup span{
     margin-right: 10px;
+}
+
+.containertosignup a{
+    text-decoration: none;
+}
+
+.containertosignup a:hover{
+    text-decoration:underline;
 }
