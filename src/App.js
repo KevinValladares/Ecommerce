@@ -4,8 +4,35 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import  NavMenu from './Components/NavMenu'
 import './Styles/Global.css'
-
+import { authContext } from './Context/Auth';
+import { cartContext } from './Context/Cart';
+import { useContext, useEffect, lazy, Suspense } from 'react';
+import { get } from './Api/Conexion';
 function App() {
+
+  const {setUser} = useContext(authContext)
+  //const {setItems} = useContext(cartContext)
+
+  // Recuperamos sesión del usuario
+  useEffect(()=>{
+    get("/Api/auth/validate")
+    .then(result=>{
+      setUser({type:'LOGIN',payload:result.user})
+      /* get("/api/cart")
+      .then(data=>{
+        setItems({
+          type:"UPDATE",
+          payload:data.items
+        })
+      }) */
+      .catch(console.log)
+    })
+    .catch(error=>console.log(error))
+  },[setUser])
+
+
+
+
   return (
     <div className="App">
 

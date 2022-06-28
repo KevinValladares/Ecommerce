@@ -30,8 +30,6 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
-
-
   flex: 62%;
   display: flex;
   align-items: center;
@@ -119,7 +117,7 @@ export const NavbarExtendedContainer = styled.div`
 `;
 
 export const NombreUsuario = styled.div`
-  flex: 18%;
+ 
   display: flex;
   color: white;
   align-items: center;
@@ -133,9 +131,6 @@ export const NombreUsuario = styled.div`
 
 `;
 
-
-
-
 export const NombreUsuarioExtender = styled.div`
   flex: 20%;
   display: flex;
@@ -145,8 +140,13 @@ export const NombreUsuarioExtender = styled.div`
   justify-content: flex-start;
 
 &>span{
+  width:100%;
+  color: white;
   font-size: x-large;
-  margin: 15px;
+  font-family: 'Quicksand', sans-serif;
+    padding:10px;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  text-align:start;
   
 }
 
@@ -156,5 +156,75 @@ export const NombreUsuarioExtender = styled.div`
 
 
 `;
+
+
+export const IconCarrito = styled.div`
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: flex-end;
+  @media (max-width: 780px) {
+
+  display: ${(props) => (props.extendNavbar ? "none" : "")};
+  }
+  @media (min-width: 780px) {
+    display: none;
+  }
+
+`;
+
+
+
+export const Libutton = styled.li`
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
+
+
+  list-style: none;
+  color: white;
+  font-size: x-large;
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+
+  @media (max-width: 780px) {
+    display: none;
+  }
+
+`;
+
+export const Titulo = styled.h3`
+
+  margin: 20px;
+  color: white;
+  font-size:20px;
+  font-family: Arial, Helvetica, sans-serif;
+
+`;
+
+export const NavbarSubLink = styled(Link)`
+  display:flex;
+  width:100%;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  padding:8px;
+  text-align:start;
+  cursor: pointer;
+
+&:hover{
+
+  background: lightgrey;
+}
+
+  @media (max-width: 780px) {
+    display: none;
+  }
+
+
+`;
+
 
 

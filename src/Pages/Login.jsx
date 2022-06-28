@@ -41,6 +41,9 @@ const Login = () => {
 
   }
 
+  const RedirectSignup = () => {
+    navigate('/Signup')
+  }
 
 
   return (
@@ -48,46 +51,60 @@ const Login = () => {
     <div className='Login'>
       <div className="Containerformlogin">
 
-        <h1>Sign in to Best buy</h1>
+        <h1>Iniciar sesión</h1>
         <form onSubmit={Methodlogin} className='formlogin'>
-          <input
-            className='inputlogin inputlogin-email'
-            type="text" placeholder='Email' name='email'
-            value={data.email}
-            onChange={handleFormChange}
-          />
-          <input
-            className='inputlogin inputlogin-password'
-            type="password" placeholder='Password' name='password'
-            value={data.password}
-            onChange={handleFormChange}
-          />
-          <input
-            className='buttonlogin'
-            type="submit"
-            value="Iniciar sesión"
-          />
+          <div>
+            <input
+              className='inputlogin inputlogin-email'
+              type="text" placeholder='Email' name='email'
+              value={data.email}
+              onChange={handleFormChange}
+            />
+            <input
+              className='inputlogin inputlogin-password'
+              type="password" placeholder='Password' name='password'
+              value={data.password}
+              onChange={handleFormChange}
+            />
+            <input
+              className='buttonlogin'
+              type="submit"
+              value="Iniciar sesión"
+            />
+          </div>
         </form>
 
-        <div className='lineadivisoria'>
-          <div className='textolinea'>or</div>
-          <div className="line"></div>
+        <div>
+          <div className='lineadivisoria'>
+            <div className='textolinea'>or</div>
+            <div className="line"></div>
+          </div>
+
+
+          <div className='linkexternos'>
+            <button className='buttonexterno buttongoogle'>
+              <a href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/google'> <FcGoogle /> Registrarse con Google</a>
+            </button>
+            <button className='buttonexterno buttonfacebook'>
+              <a href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/facebook'> <FaFacebook />Registrarse con Facebook</a>
+            </button>
+          </div>
+
         </div>
 
 
-        <div className='linkexternos'>
-          <button className='buttonexterno buttongoogle'> <FcGoogle /> Iniciar con Google</button>
-          <button className='buttonexterno buttonfacebook'> <FaFacebook />Iniciar con Facebook</button>
-        </div>
+        <div className='controlbajo'>
 
-        <div className='lineadivisoria'>
-          <div className="line"></div>
-        </div>
+          <div className='lineadivisoria'>
+            <div className="line"></div>
+          </div>
 
 
-        <div className='containertosignup'>
-          <span>No tienes una cuenta?</span>
-          <a href="#">Crear cuenta</a>
+          <div className='containertosignup'>
+            <span>No tienes una cuenta?</span>
+            <a onClick={RedirectSignup}>Crear cuenta</a>
+          </div>
+
         </div>
 
 

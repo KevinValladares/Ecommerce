@@ -1,8 +1,9 @@
-import React, { useState, useContext, useContextxt } from "react";
+import React, { useState, useContext } from "react";
 import {
     NavbarContainer, LeftContainer, RightContainer, NavbarExtendedContainer,
-    NavbarInnerContainer, NavbarLinkContainer, NavbarLink, Logo,
+    NavbarInnerContainer, NavbarLinkContainer, NavbarLink,
     OpenLinksButton, NavbarLinkExtended, NombreUsuario, NombreUsuarioExtender
+    , Libutton, Titulo, NavbarSubLink, IconCarrito
 } from "./Menustyle";
 
 import Tooltip from '@mui/material/Tooltip';
@@ -15,6 +16,16 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Logout from '@mui/icons-material/Logout';
 import BurgerButton from "./BurgerButton";
 import { authContext } from "../Context/Auth";
+import { get } from '../Api/Conexion'
+import { useNavigate } from 'react-router-dom'
+
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import { deepOrange } from '@mui/material/colors';
+import CartShop from "./CartShop";
+import ProductCart from './ProductCart'
+
+
 
 const NavMenu = () => {
 
@@ -22,77 +33,121 @@ const NavMenu = () => {
     const [extendNavbar, setExtendNavbar] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const [anchorEl2, setAnchorEl2] = useState(null);
+    const open2 = Boolean(anchorEl2);
+
+    const [state, setState] = useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+    });
+
+    const navigate = useNavigate()
+
+    const handleClickMenu = (event) => {
+        setAnchorEl2(event.currentTarget);
+    };
+    const handleCloseMenu = () => {
+        setAnchorEl2(null);
+    };
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setState({ ...state, [anchor]: open });
+    };
+    const list = (anchor) => (
+        <Box
+            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300 }}
+            role="presentation"
+
+            onKeyDown={toggleDrawer(anchor, false)}
+        >
+            <ProductCart CerrarBox={toggleDrawer(anchor, false)} />
+        </Box>
+    );
 
     const handleClickLink = () => {
 
         if (extendNavbar == true)
             setExtendNavbar(false)
     }
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-
     const handleClose = () => {
         setAnchorEl(null);
     };
-
     const handleLogOut = () => {
 
-        console.log('hola')
+        get("/api/auth/logout")
+            .then(result => {
 
-        context.setUser({
-            user: {},
-            logged: true,
-
-        })
+                context.setUser({ type: 'LOGOUT' })
+                navigate("/")
+            })
 
 
 
     }
+
 
     return (
         <NavbarContainer extendNavbar={extendNavbar}>
             <NavbarInnerContainer>
 
                 <LeftContainer>
-                    hola
+                    <Titulo>ShopiMarket</Titulo>
                 </LeftContainer>
 
                 <RightContainer>
                     <NavbarLinkContainer>
                         <NavbarLink to='/'>Inicio</NavbarLink>
-                        {!context.user.logged && <NavbarLink to='/Login'>Login</NavbarLink>}
+                        {!context.logged && <NavbarLink to='/Login'>Login</NavbarLink>}
+                        {!context.logged && <NavbarLink to='/Signup'>SignUp</NavbarLink>}
+                        {context.logged && <Libutton onClick={handleClickMenu}>Productos</Libutton>}
+
+
+                        <IconCarrito extendNavbar={extendNavbar}>
+                            <CartShop handleCartonClick={toggleDrawer('right', true)} />
+                        </IconCarrito>
+
 
                         <OpenLinksButton>
-                            <BurgerButton Clicked={extendNavbar} handleClick={() => { setExtendNavbar(!extendNavbar); }} />
+                            <BurgerButton 
+                            Clicked={extendNavbar} 
+                            handleClick={() => { setExtendNavbar(!extendNavbar); }} />
                         </OpenLinksButton>
 
                     </NavbarLinkContainer>
                 </RightContainer>
 
                 {
-                    context.user.logged &&
+                    context.logged &&
                     (
                         <NombreUsuario>
+                            <CartShop handleCartonClick={toggleDrawer('right', true)} />
                             <Tooltip title="Account settings">
                                 <IconButton
                                     onClick={handleClick}
                                     size="small"
-                                    sx={{ ml: 2 }}
+                                    sx={{ ml: 2 ,mb:1}}
                                     aria-controls={open ? 'account-menu' : undefined}
                                     aria-haspopup="true"
                                     aria-expanded={open ? 'true' : undefined}
                                 >
-                                    <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                                    <Avatar 
+                                    sx={{ width: 32, height: 32, bgcolor: deepOrange[500] }}>
+                                        K</Avatar>
                                 </IconButton>
                             </Tooltip>
                         </NombreUsuario>
+
+
                     )
                 }
-
-
-
 
             </NavbarInnerContainer>
 
@@ -100,7 +155,23 @@ const NavMenu = () => {
                 <NavbarExtendedContainer>
 
                     <NavbarLinkExtended onClick={handleClickLink} to='/'>Inicio</NavbarLinkExtended>
-                    <NavbarLinkExtended onClick={handleClickLink} to='/Login'>Login</NavbarLinkExtended>
+                    {!context.logged &&
+                        <NavbarLinkExtended onClick={handleClickLink} to='/Login'>Login</NavbarLinkExtended>
+                    }
+                    {!context.logged &&
+                        <NavbarLinkExtended onClick={handleClickLink} to='/Signup'>SignUp</NavbarLinkExtended>
+                    }
+
+                    {
+                        context.logged &&
+                        (
+                            <NombreUsuarioExtender>
+                                <span>{context.user.name}</span>
+                                <span onClick={handleLogOut}><Logout fontSize="small" />Logout</span>
+                            </NombreUsuarioExtender>
+
+                        )
+                    }
 
                 </NavbarExtendedContainer>
             )}
@@ -140,9 +211,10 @@ const NavMenu = () => {
                 }}
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                
             >
                 <MenuItem>
-                    <Avatar /> {context.user.name}
+                    <Avatar sx={{ bgcolor: deepOrange[500] }} /> {context.user.name}
                 </MenuItem>
                 <Divider />
 
@@ -153,7 +225,25 @@ const NavMenu = () => {
                     Logout
                 </MenuItem>
             </Menu>
-
+            <Drawer
+                anchor={'right'}
+                open={state['right']}
+                onClose={toggleDrawer('right', false)}
+            >
+                {list('right')}
+            </Drawer>
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl2}
+                open={open2}
+                onClose={handleCloseMenu}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+            >
+                <NavbarSubLink onClick={handleCloseMenu} to='/Login'>Ingresar Productos</NavbarSubLink>
+                <NavbarSubLink onClick={handleCloseMenu} to='/Login'>Ver productos</NavbarSubLink>
+            </Menu>
 
         </NavbarContainer>
     );
