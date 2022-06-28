@@ -1,0 +1,148 @@
+@import './Global.css';
+
+.ContainerProducts2 {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 250px);
+	gap: 26px;
+	place-content: center;
+	margin: 10px 0 0 10px;
+}
+
+
+.ProductItem {
+
+	width: 250px;
+	height: 420px;
+	margin: 10px 0px 35px 0px;
+	border: none;
+	/*  border: 1px solid var(--very-light-pink) ;  */
+	/* border-radius: 8px; */
+
+	
+
+}
+
+
+.product-info {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin: 5px 5px 5px 5px;
+}
+
+
+.ContainerImage {
+
+	width: 100%;
+	height: 250px;
+
+}
+
+.ImageProduct {
+
+	display: flex;
+	width: 100%;
+	height: 100%;
+
+}
+
+
+.ContainerInfoOffert {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+
+.NombreProducto {
+
+	width: 100%;
+	text-align: left;
+	font-size: var(--md);
+	font-weight: bold;
+	margin: 5px 5px 10px 5px;
+
+}
+
+.PrecioProducto {
+
+	width: 100%;
+	text-align: left;
+	font-size: var(--md);
+	font-weight: bold;
+	margin: 5px 5px 10px 5px;
+
+}
+
+.offerDescripcion p {
+	text-align: justify;
+	margin: 5px 5px 10px 5px;
+	overflow: hidden;
+}
+
+.ContainerButton {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.buttonAdd {
+	display: flex;
+	height: 40px;
+	margin-bottom: 10px;
+	background: var(--white);
+	border: 1px solid black;
+	font-size: var(--md);
+	font-weight: bold;
+	cursor: pointer;
+	font-family: 'Quicksand', sans-serif;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.IconShop {
+	font-size: 20px;
+
+}
+
+.buttonFavorite{
+	display: flex;
+	height: 40px;
+	border: none;
+	background-color: var(--white);
+	justify-content: center;
+	align-items: center;
+}
+.IconFavorite{
+	
+	font-size: 20px;
+
+	
+}
+
+.buttonAdd:hover{
+
+	background: #161b22;
+	color: var(--white);
+}
+.buttonFavorite:hover{
+
+	border: 1px solid #161b22;
+	color: red;
+	
+}
+
+@media (max-width: 640px) {
+
+	.ProductItem {
+
+		grid-template-columns: repeat(auto-fill, 300px);
+	}
+
+
+
+}

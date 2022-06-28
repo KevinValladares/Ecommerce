@@ -3,7 +3,7 @@ import CartReducer, { initialState } from '../Reducers/CartReducer'
 
 export const cartContext = createContext()
 
-export default function Cart({children}) {
+export default function CartProvider({children}) {
 
     const [state,dispatch] = useReducer(CartReducer,initialState)
 

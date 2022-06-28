@@ -242,7 +242,7 @@ const NavMenu = () => {
                 }}
             >
                 <NavbarSubLink onClick={handleCloseMenu} to='/Login'>Ingresar Productos</NavbarSubLink>
-                <NavbarSubLink onClick={handleCloseMenu} to='/Login'>Ver productos</NavbarSubLink>
+                <NavbarSubLink onClick={handleCloseMenu} to='/ListProducts'>Ver productos</NavbarSubLink>
             </Menu>
 
         </NavbarContainer>
