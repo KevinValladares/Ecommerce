@@ -30,7 +30,21 @@ async function post(url,data){
 }
 
 
+async function del(url,data){
+    try {
+        const result = await instance.delete(url,{
+            data,
+            withCredentials:true
+        })
+    
+        return result.data
+    } catch (error) {
+        throw error.response.data
+    }
+}
+
 export {
     get,
-    post
+    post,
+    del
 }

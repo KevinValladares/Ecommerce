@@ -13,21 +13,23 @@ import ProductInfo from './Components/ProductInfo'
 function App() {
 
   const { setUser } = useContext(authContext)
-  const {setItems} = useContext(cartContext)
+  const { setItems } = useContext(cartContext)
 
   // Recuperamos sesión del usuario
   useEffect(() => {
     get("/Api/auth/validate")
       .then(result => {
         setUser({ type: 'LOGIN', payload: result.user })
-     get("/api/cart")
+        get("/api/cart")
           .then(data => {
+
+            console.log(data)
             setItems({
               type: "UPDATE",
-              payload: data.data
+              payload: data
             })
           })
-          .catch(console.log) 
+          .catch(console.log)
       })
       .catch(error => console.log(error))
   }, [setUser])

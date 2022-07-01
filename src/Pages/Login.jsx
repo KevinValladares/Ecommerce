@@ -83,11 +83,14 @@ const Login = () => {
 
           <div className='linkexternos'>
             <button className='buttonexterno buttongoogle'>
-              <a href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/google'> <FcGoogle /> Registrarse con Google</a>
+              <a href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/google' > <FcGoogle /> Registrarse con Google</a>
             </button>
             <button className='buttonexterno buttonfacebook'>
               <a href='https://backendnodejstzuzulcode.uw.r.appspot.com/api/auth/facebook'> <FaFacebook />Registrarse con Facebook</a>
             </button>
+
+
+
           </div>
 
         </div>

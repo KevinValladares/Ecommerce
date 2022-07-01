@@ -1,7 +1,7 @@
-/* .ContainerProducts {
+ .ContainerProducts {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 250px);
-	gap: 26px;
+	gap: 25px;
 	place-content: center;
 	margin: 10px 0 0 10px;
 }
@@ -12,4 +12,4 @@
 		grid-template-columns: repeat(auto-fill, 250px);
 		
 	}
-} */
+} 

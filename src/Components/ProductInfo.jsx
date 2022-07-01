@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import '../Styles/ProductInfo.css'
 import { AiOutlineShopping, AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { cartContext } from '../Context/Cart';
+import {  post } from '../Api/Conexion'
 
+const ProductInfo = ({ datos }) => {
 
-const ProductInfo = () => {
-
-    const { items } = useContext(cartContext)
+    const { setItems, items } = useContext(cartContext)
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -16,35 +16,48 @@ const ProductInfo = () => {
 
     })
 
+    const addToCart = (id) =>{
+        post("/api/cart/add",{
+          idProduct:id,
+          amount:1
+        }).then(data=>{
+          setItems({
+            type:"UPDATE",
+            payload:data
+          })
+    
+        })
+      }
+
+
     return (
 
-        <div className='ContainerProducts2'>
 
-            {items.map(item => (
-                <div className="ProductItem" key={item._id}>
-                    <div className="product-info" >
-                        <div className='ContainerImage'>
-                            <img className="ImageProduct" src={item.images[0]} alt={item.name} />
-                        </div>
-                        <div className='ContainerInfoOffert'>
-                            <span className='NombreProducto'>{item.name}</span>
-                            <span className='PrecioProducto'>{formatter.format(item.price)}</span>
-                            <div className="offerDescripcion">
-                                <p>{item.description}</p>
-                            </div>
-                        </div>
-                        <div className='ContainerButton'>
-                            <button className='buttonAdd'>
-                                <AiOutlineShopping className='IconShop' /> Agregar al carrito
-                            </button>
-                            <button className='buttonFavorite'>
-                                <AiOutlineHeart className='IconFavorite' />
-                            </button>
-                        </div>
+       
+        <div className="ProductItem">
+
+            <div className="product-info" >
+                <div className='ContainerImage'>
+                    <img className="ImageProduct" src={datos.images[0]} alt={datos.name} />
+                </div>
+                <div className='ContainerInfoOffert'>
+                    <span className='NombreProducto'>{datos.name}</span>
+                    <span className='PrecioProducto'>{formatter.format(datos.price)}</span>
+                    <div className="offerDescripcion">
+                        <p>{datos.description.substring(0, 40)}</p>
                     </div>
-                </div >
-            ))}
-        </div>
+                </div>
+                <div className='ContainerButton'>
+                    <button className='buttonAdd' onClick={() => addToCart(datos._id)}>
+                        <AiOutlineShopping className='IconShop' /> Agregar al carrito
+                    </button>
+                    <button className='buttonFavorite'>
+                        <AiOutlineHeart className='IconFavorite' />
+                    </button>
+                </div>
+            </div>
+        </div >
+     
 
 
 
@@ -55,29 +68,4 @@ const ProductInfo = () => {
 export default ProductInfo
 
 
-{/* <div className="ProductItem">
-{items.map(item => (
-    <div className="product-info" key={item._id}>
-        <div className='ContainerImage'>
-            <img className="ImageProduct" src={item.images[0]} alt={item.name} />
-        </div>
-        <div className='ContainerInfoOffert'>
-            <span className='NombreProducto'>{item.name}</span>
-            <span className='PrecioProducto'>{formatter.format(item.price)}</span>
-            <div className="offerDescripcion">
-                <p>{item.description}</p>
-            </div>
-        </div>
-        <div className='ContainerButton'>
-            <button className='buttonAdd'>
-                <AiOutlineShopping className='IconShop' /> Agregar al carrito
-            </button>
-            <button className='buttonFavorite'>
-                <AiOutlineHeart className='IconFavorite' />
-            </button>
-        </div>
-    </div> 
-))}
-</div >
- */}
 

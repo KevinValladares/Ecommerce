@@ -99,8 +99,18 @@ display: flex;
 margin: 0px 10px 0px 0px;
 width:90px;
 height:70px;
+justify-content:center;
 
 `;
+
+export const ImageProductCart = styled.img`
+display: flex;
+width: 90%;
+	height: 100%;
+
+`;
+
+
 
 export const DivProductdelete = styled.div`
 display: flex;
@@ -146,4 +156,3 @@ export const PrimaryButton = styled.button`
 }
 
 `;
- 

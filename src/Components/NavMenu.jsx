@@ -140,7 +140,7 @@ const NavMenu = () => {
                                 >
                                     <Avatar 
                                     sx={{ width: 32, height: 32, bgcolor: deepOrange[500] }}>
-                                        K</Avatar>
+                                        {context.user.name.substring(0,1)}</Avatar>
                                 </IconButton>
                             </Tooltip>
                         </NombreUsuario>

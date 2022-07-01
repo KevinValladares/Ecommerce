@@ -8,6 +8,7 @@ export const NavbarContainer = styled.nav`
   height: ${(props) => (props.extendNavbar ? "100vh" : "8%")};
   background-color: #232830;
   display: flex;
+ 
   flex-direction: column;
   @media (min-width: 780px) {
     height: 8%;

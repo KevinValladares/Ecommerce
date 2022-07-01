@@ -1,104 +1,71 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
     DivContainercart, DivHeadercart, DivContainterProducts, DivContainterSubtotal,
-    DivProduct, DivProductdetail, DivProductimage, Productdetailname, DivProductdelete, ContainerFooter,
-    PrimaryButton
+    DivProduct, DivProductdetail, DivProductimage, Productdetailname, DivProductdelete,
+    ContainerFooter, PrimaryButton,ImageProductCart
 } from "./ProductStyle";
 import { AiOutlineClose } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-import Mochila from '../Assets/mochila.jfif'
+import { cartContext } from '../Context/Cart';
+import {  del } from '../Api/Conexion'
+
+
 const ProductCart = ({ CerrarBox }) => {
 
-    const VerCarrito = () => {
+    const { items,setItems } = useContext(cartContext)
+    let Subtotal = items.reduce((total, item) => total + (item.amount * item.price), 0); 
 
-        alert("vercarrito")
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
 
+    })
+   
+    const deleteFromCart = (id)=>{
+        del("/api/cart/remove",{
+            idProduct:id
+        })
+        .then(data=>{
+            setItems({
+                type:"UPDATE",
+                payload:data
+            })
+        })
+        .catch(console.log)
     }
-
 
 
     return (
 
         <DivContainercart>
             <DivHeadercart>
-                <span>3 ITEM(S)</span>
+                <span>{items.length} ITEM(S)</span>
                 <span onClick={CerrarBox}><AiOutlineClose />  </span>
             </DivHeadercart>
             <DivContainterProducts>
 
-                <DivProduct>
-                    <DivProductdetail>
-                        <Productdetailname>Producto 1</Productdetailname>
-                        <span>1 x $5.00</span>
-                    </DivProductdetail>
-                    <DivProductimage>
-                        <img src={Mochila} alt="mochila" />
-                    </DivProductimage>
-                    <DivProductdelete>
-                        <span onClick={VerCarrito}><RiDeleteBin6Line />  </span>
-                    </DivProductdelete>
-                </DivProduct>
 
-                <DivProduct>
-                    <DivProductdetail>
-                        <Productdetailname>Producto 2</Productdetailname>
-                        <span>1 x $5.00</span>
-                    </DivProductdetail>
-                    <DivProductimage>
-                        <img src={Mochila} alt="mochila" />
-                    </DivProductimage>
-                    <DivProductdelete>
-                        <span ><RiDeleteBin6Line />  </span>
-                    </DivProductdelete>
-                </DivProduct>
-                <DivProduct>
-                    <DivProductdetail>
-                        <Productdetailname>Producto 3</Productdetailname>
-                        <span>1 x $5.00</span>
-                    </DivProductdetail>
-                    <DivProductimage>
-                        <img src={Mochila} alt="mochila" />
-                    </DivProductimage>
-                    <DivProductdelete>
-                        <span ><RiDeleteBin6Line />  </span>
-                    </DivProductdelete>
-                </DivProduct>
-                <DivProduct>
-                    <DivProductdetail>
-                        <Productdetailname>Producto 4</Productdetailname>
-                        <span>1 x $5.00</span>
-                    </DivProductdetail>
-                    <DivProductimage>
-                        <img src={Mochila} alt="mochila" />
-                    </DivProductimage>
-                    <DivProductdelete>
-                        <span ><RiDeleteBin6Line />  </span>
-                    </DivProductdelete>
-                </DivProduct>
-                <DivProduct>
-                    <DivProductdetail>
-                        <Productdetailname>Producto 5</Productdetailname>
-                        <span>1 x $5.00</span>
-                    </DivProductdetail>
-                    <DivProductimage>
-                        <img src={Mochila} alt="mochila" />
-                    </DivProductimage>
-                    <DivProductdelete>
-                        <span ><RiDeleteBin6Line />  </span>
-                    </DivProductdelete>
-                </DivProduct>
-                <DivProduct>
-                    <DivProductdetail>
-                        <Productdetailname>Producto 6</Productdetailname>
-                        <span>1 x $5.00</span>
-                    </DivProductdetail>
-                    <DivProductimage>
-                        <img src={Mochila} alt="mochila" />
-                    </DivProductimage>
-                    <DivProductdelete>
-                        <span ><RiDeleteBin6Line />  </span>
-                    </DivProductdelete>
-                </DivProduct>
+                {items.map(item => (
+                    <DivProduct key={item._id}>
+                        <DivProductdetail>
+                            <Productdetailname>{item.name}</Productdetailname>
+                            <span>{`${item.amount} x ${formatter.format(item.price)}`}</span>
+                        </DivProductdetail>
+                        <DivProductimage>
+                            <ImageProductCart src={item.images[0]} alt={items.name}/>
+                        </DivProductimage>
+                        <DivProductdelete>
+                            <span onClick={() => deleteFromCart(item._id)}><RiDeleteBin6Line /></span>
+                        </DivProductdelete>
+                    </DivProduct>
+
+                ))}
+
+
+
+
 
             </DivContainterProducts>
 
@@ -106,7 +73,7 @@ const ProductCart = ({ CerrarBox }) => {
             <ContainerFooter>
                 <DivContainterSubtotal>
                     <span>SUBTOTAL</span>
-                    <span >$15.00</span>
+                    <span >{formatter.format(Subtotal)}</span>
                 </DivContainterSubtotal>
                 <PrimaryButton>Ver Carrito</PrimaryButton>
             </ContainerFooter>

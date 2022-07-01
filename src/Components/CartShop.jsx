@@ -1,25 +1,16 @@
-import React, { useState } from 'react'
-
-
+import React, { useState,useContext } from 'react'
 import Badge from "@mui/material/Badge";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { deepOrange, deepPurple } from '@mui/material/colors';
-
-import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+import { cartContext } from '../Context/Cart';
+
 
 const CartShop = ({ handleCartonClick }) => {
-
-    const [contador, setContador] = useState(6);
+  const {items} = useContext(cartContext)
 
 
     return (
@@ -38,7 +29,7 @@ const CartShop = ({ handleCartonClick }) => {
             }}
         >
             <div onClick={handleCartonClick}>
-                <Badge color="secondary" badgeContent={contador} max={5}>
+                <Badge color="secondary" badgeContent={items.length} max={5}>
                     <ShoppingCartIcon style={{ color: 'white' }} />
                 </Badge>
                 </div>
