@@ -1,15 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './Pages/Home';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
+import {  Routes, Route } from 'react-router-dom'
+//import Home from './Pages/Home'; 
+//import Login from './Pages/Login';
+//import Signup from './Pages/Signup';
+//import ListProduct from './Pages/ListProduct';
+//import NotProduct from './Pages/NotProduct'
+
 import NavMenu from './Components/NavMenu'
+import ProductCheckout from './Components/ProductCheckout';
+import ProductInfo from './Components/ProductInfo'
+
 import './Styles/Global.css'
 import { authContext } from './Context/Auth';
 import { cartContext } from './Context/Cart';
 import { useContext, useEffect, lazy, Suspense } from 'react';
 import { get } from './Api/Conexion';
-import ListProduct from './Pages/ListProduct';
-import ProductInfo from './Components/ProductInfo'
+
+
+const Home  = lazy(() => import('./Pages/Home'));
+const Login = lazy(() => import('./Pages/Login'));
+const Signup = lazy(() => import('./Pages/Signup'));
+const ListProduct = lazy(() => import('./Pages/ListProduct'));
+const NotProduct = lazy(() => import('./Pages/NotProduct'));
+
+
+
+
 function App() {
 
   const { setUser } = useContext(authContext)
@@ -19,11 +34,11 @@ function App() {
   useEffect(() => {
     get("/Api/auth/validate")
       .then(result => {
+        console.log(result);
         setUser({ type: 'LOGIN', payload: result.user })
+
         get("/api/cart")
           .then(data => {
-
-            console.log(data)
             setItems({
               type: "UPDATE",
               payload: data
@@ -38,23 +53,24 @@ function App() {
 
 
   return (
-    <div className="App">
-
-      <Router>
+    <>
+      
         <NavMenu />
+        <Suspense fallback={"cargando"}>
+          <Routes>
+            <Route>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/Login" element={<Login />} />
+              <Route exact path="/Signup" element={<Signup />} />
+              <Route exact path="/ListProducts" element={<ListProduct />} />
+            {/*   <Route exact path="/Checkout" element={<ProductCheckout />} /> */}
+              <Route exact path="/NotProduct" element={<NotProduct />} />
+            </Route>
+          </Routes>
+     
+    </Suspense>
 
-        <Routes>
-          <Route>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/Login" element={<Login />} />
-            <Route exact path="/Signup" element={<Signup />} />
-            <Route exact path="/ListProducts" element={<ListProduct />} />
-            <Route exact path="/ProductInfo" element={<ProductInfo />} />
-          </Route>
-        </Routes>
-      </Router>
-
-    </div>
+    </>
   );
 }
 

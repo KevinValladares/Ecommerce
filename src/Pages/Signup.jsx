@@ -6,7 +6,8 @@ import { FaFacebook } from 'react-icons/fa'
 import { authContext } from '../Context/Auth'
 import { useNavigate } from 'react-router-dom'
 import { post } from '../Api/Conexion'
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const Signup = () => {
 
@@ -35,6 +36,13 @@ const Signup = () => {
     post("/api/auth/signup",data).then(({user})=>{
       console.log(user)
         setUser({type:'SIGNUP',payload:user})
+        Swal.fire({
+            
+          icon: 'success',
+          title: 'Se ha creado con exito su cuenta!!!',
+          showConfirmButton: false,
+          timer: 1500
+        })
         navigate("/")
     })
     .catch(error=>{

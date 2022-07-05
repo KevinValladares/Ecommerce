@@ -1,15 +1,50 @@
+ .ListProduct {
+ 	display: flex;
+ 	flex-direction: column;
+
+ }
+
+ .SearchComponent {
+
+ 	display: flex;
+ 	justify-content: flex-end;
+ 	align-items: center;
+ 	margin: 10px 10px 10px 0px;
+
+ }
+
+ .SearchInput {
+
+ 	width: 300px;
+ 	height: 25px;
+ 	font-size: var(--md);
+ 	border: 1px solid;
+ 	border-radius: 5px;
+ 	padding: 5px;
+ 	font-family: 'Quicksand', sans-serif;
+ }
+
+
  .ContainerProducts {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 250px);
-	gap: 25px;
-	place-content: center;
-	margin: 10px 0 0 10px;
-}
+ 	display: grid;
+ 	grid-template-columns: repeat(auto-fill, 250px);
+ 	gap: 25px;
+ 	place-content: center;
+ 	margin: 10px 0 30px 10px;
+ }
 
-@media (max-width: 640px) {
-	.ContainerProducts {
 
-		grid-template-columns: repeat(auto-fill, 250px);
-		
-	}
-} 
+ .Paginacion {
+ 	display: flex;
+ 	height: 40px;
+ 	justify-content: center;
+ 	margin: 10px 0px 10px 0px;
+ }
+
+ @media (max-width: 640px) {
+ 	.ContainerProducts {
+
+ 		grid-template-columns: repeat(auto-fill, 250px);
+
+ 	}
+ }

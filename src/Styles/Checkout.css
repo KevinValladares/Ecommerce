@@ -1,0 +1,241 @@
+@import './Global.css';
+
+
+.ContainerCart {
+
+    width: 100%;
+    height: 92%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.Title {
+
+    display: flex;
+    flex-direction: column;
+    /*  background-color: lightgreen; */
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.ContainerDetail {
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+}
+
+.ContainerProductDetail {
+    height: 470px;
+    display: grid;
+    margin: 0px 60px;
+    grid-template-columns: 1fr auto;
+
+}
+
+.Section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+}
+
+.TableCartShop {
+    height: 100%;
+}
+
+.CartHead {
+    /*  background: lightblue; */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border-bottom: 1px solid lightgrey;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.ColOne {
+    width: 200px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+   
+}
+
+.ColEliminar {
+    width: 40px;
+    margin: 0px 0px 0px 10px;
+}
+
+.ColOne span {
+    margin: 0px 0px 0px 10px;
+    font-weight: bold;
+}
+
+.ColSecond {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+}
+
+.ColProducto {
+    width: 270px;
+    margin: 0px 0px 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+.ProductColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 0px 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+.ColPrecio {
+    display: flex;
+    width: 80px;
+    align-items: center;
+
+}
+
+.ColSubtotal {
+    display: flex;
+    width: 100px;
+    align-items: center;
+
+}
+
+.CartBody {
+    width: 100%;
+    height: 445px;
+    display: flex;
+    flex-direction: column;
+    /*  background-color: lightyellow; */
+    overflow: auto;
+
+}
+
+
+.CartBody::-webkit-scrollbar {
+    width: 12px;
+    /*  border-radius: 5px; */
+    background-color: #f5f5f5;
+
+}
+
+.CartBody::-webkit-scrollbar-thumb {
+    height: 10px;
+    /*   border-radius: 5px; */
+    background-color: gray;
+
+}
+
+.CartBody::-webkit-scrollbar-thumb:hover {
+
+    background-color: lightcoral;
+}
+
+.CartBody::-webkit-scrollbar-track {
+    /*  border-radius: 5px; */
+    box-shadow: inset 0 0 10px rgb(0, 0, 0, 0.4);
+    background-color: #f5f5f5;
+
+}
+
+.ProductInfo {
+    width: 100%;
+    height: 100px;
+    display: grid;
+    padding: 5px 0px 5px 0px;
+    grid-template-columns: auto 1fr;
+    border-bottom: 1px solid lightgrey;
+}
+
+.ProductImagen {
+
+    height: 100px;
+    width: 135px;
+}
+
+.ImagenItem {
+
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.ColCantidad {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ColNombreProducto {
+    width: 270px;
+    margin: 0px 0px 0px 10px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.btnEliminar {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btnEliminar:hover{
+    color: red;
+}
+
+.ValorCantidad {
+    margin: 0px 15px;
+}
+
+.Aside {
+    width: 350px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    border: 1px solid lightgrey;
+
+}
+
+.Aside h3 {
+    margin: 10px 10px;
+    text-align: center;
+}
+
+.ContainerSubtotal {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Resume {
+    display: flex;
+    flex-direction: column;
+}
+
+.ArticleResume {
+    margin: 10px 0px 0px 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.ArticleResume span:nth-child(1) {
+
+    font-family: 'Quicksand', sans-serif;
+    font-size: var(--md);
+    font-weight: bold;
+}
+
+.labeltotal {
+    margin-right: 10px;
+    font-family: 'Quicksand', sans-serif;
+}

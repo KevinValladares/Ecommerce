@@ -8,10 +8,11 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { cartContext } from '../Context/Cart';
 import {  del } from '../Api/Conexion'
-
+import {useNavigate} from 'react-router-dom'
 
 const ProductCart = ({ CerrarBox }) => {
 
+    const Navigate = useNavigate()
     const { items,setItems } = useContext(cartContext)
     let Subtotal = items.reduce((total, item) => total + (item.amount * item.price), 0); 
 
@@ -37,6 +38,21 @@ const ProductCart = ({ CerrarBox }) => {
     }
 
 
+    const DirectCheckout=(e,item)=>{
+       
+        
+if(item===0){
+    Navigate('NotProduct')
+}
+else{
+    Navigate('Checkout')
+}
+CerrarBox(e); 
+   
+   
+
+    }
+
     return (
 
         <DivContainercart>
@@ -50,7 +66,7 @@ const ProductCart = ({ CerrarBox }) => {
                 {items.map(item => (
                     <DivProduct key={item._id}>
                         <DivProductdetail>
-                            <Productdetailname>{item.name}</Productdetailname>
+                            <Productdetailname>{item.name.substring(0, 20)}</Productdetailname>
                             <span>{`${item.amount} x ${formatter.format(item.price)}`}</span>
                         </DivProductdetail>
                         <DivProductimage>
@@ -75,10 +91,8 @@ const ProductCart = ({ CerrarBox }) => {
                     <span>SUBTOTAL</span>
                     <span >{formatter.format(Subtotal)}</span>
                 </DivContainterSubtotal>
-                <PrimaryButton>Ver Carrito</PrimaryButton>
+                <PrimaryButton onClick={(e)=>DirectCheckout(e,items.length)}>Ver Carrito</PrimaryButton>
             </ContainerFooter>
-
-
 
 
         </DivContainercart>

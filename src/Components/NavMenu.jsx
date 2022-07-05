@@ -225,6 +225,7 @@ const NavMenu = () => {
                     Logout
                 </MenuItem>
             </Menu>
+
             <Drawer
                 anchor={'right'}
                 open={state['right']}
@@ -232,6 +233,7 @@ const NavMenu = () => {
             >
                 {list('right')}
             </Drawer>
+            
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl2}
