@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState,useDeferredValue } from 'react'
 import { cartContext } from '../Context/Cart';
 import '../Styles/Checkout.css'
 import { RiDeleteBin6Line } from 'react-icons/ri'
@@ -20,7 +20,10 @@ const ProductCheckout = () => {
     const { items, setItems } = useContext(cartContext)
   
     let Subtotal = items.reduce((total, item) => total + (item.amount * item.price), 0);
-   
+    const deferredCharacter = useDeferredValue(clientSecret)
+
+
+
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -87,7 +90,13 @@ const ProductCheckout = () => {
     }, [])
 
     return (
-        <div className="ContainerCart">
+
+<>
+
+{
+    !deferredCharacter || !clientSecret ?
+            <p>CARGANDO DATOS, POR FAVOR ESPERE</p> :
+            <div className="ContainerCart">
             <div className="Title">
                 <h3>Detalle de productos del carrito</h3>
             </div>
@@ -195,6 +204,14 @@ const ProductCheckout = () => {
                 </section>
             </div>
         </div>
+
+}
+
+
+
+</>
+
+       
     )
 }
 

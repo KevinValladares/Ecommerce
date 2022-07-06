@@ -243,7 +243,7 @@ const NavMenu = () => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <NavbarSubLink onClick={handleCloseMenu} to='/Login'>Ingresar Productos</NavbarSubLink>
+                <NavbarSubLink onClick={handleCloseMenu} to='/AddProduct'>Ingresar Productos</NavbarSubLink>
                 <NavbarSubLink onClick={handleCloseMenu} to='/ListProducts'>Ver productos</NavbarSubLink>
             </Menu>
 

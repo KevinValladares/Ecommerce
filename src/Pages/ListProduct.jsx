@@ -32,7 +32,7 @@ const ListProduct = () => {
 
 
   useEffect(() => {
-    get(`/api/products/?page=${paginaactual}`)
+    get(`/api/products/?page=${paginaactual}&limit=10`)
       .then((resp) => {
 
         setProducts(resp.data)

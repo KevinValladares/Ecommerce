@@ -42,10 +42,10 @@ const ProductCart = ({ CerrarBox }) => {
        
         
 if(item===0){
-    Navigate('NotProduct')
+    Navigate('/NotProduct')
 }
 else{
-    Navigate('Checkout')
+    Navigate('/Checkout')
 }
 CerrarBox(e); 
    

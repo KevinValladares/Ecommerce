@@ -32,7 +32,9 @@ const Login = () => {
   const Methodlogin = (event) => {
     event.preventDefault();
 
-    post("/api/auth/login", data).then(({ user }) => {
+
+
+     post("/api/auth/login", data).then(({ user }) => {
       setUser({ type: 'LOGIN', payload: user }) //dispatch
       navigate("/")
     })
@@ -42,7 +44,7 @@ const Login = () => {
           title: 'Oops...',
           text: error.errors[0]      
         })
-      })
+      }) 
 
   }
 

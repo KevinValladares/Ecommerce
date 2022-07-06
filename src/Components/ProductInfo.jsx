@@ -59,9 +59,9 @@ const ProductInfo = ({ datos }) => {
                 <div className='ContainerInfoOffert'>
                     <span className='NombreProducto'>{datos.name}</span>
                     <span className='PrecioProducto'>{formatter.format(datos.price)}</span>
-                    <div className="offerDescripcion">
+                   {/*  <div className="offerDescripcion">
                         <p>{datos.description.substring(0, 40).toLowerCase()}</p>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='ContainerButton'>
                     <button 
